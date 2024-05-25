@@ -1,0 +1,429 @@
+
+MODULE main
+DEFINE rows:=8; columns:=8;
+-- new  XSB     definition
+-- a      @      warehouse keeper
+-- o      +      warehouse keeper on goal
+-- b      $      box
+-- v      *      box on goal
+-- x      #      wall
+-- g      .      goal
+-- _      _      floor
+VAR
+    worker_row : 0..7; --current worker row
+    worker_col : 0..7; --current worker col
+    movement : {u, d, l, r, 0};
+    board : array 0..7 of array 0..7 of boolean;
+    
+ASSIGN
+init(board[0][0]):=FALSE;	init(board[0][1]):=FALSE;	init(board[0][2]):=FALSE;	init(board[0][3]):=FALSE;	init(board[0][4]):=FALSE;	init(board[0][5]):=FALSE;	init(board[0][6]):=FALSE;	init(board[0][7]):=FALSE;	
+init(board[1][0]):=FALSE;	init(board[1][1]):=FALSE;	init(board[1][2]):=FALSE;	init(board[1][3]):=FALSE;	init(board[1][4]):=FALSE;	init(board[1][5]):=FALSE;	init(board[1][6]):=FALSE;	init(board[1][7]):=FALSE;	
+init(board[2][0]):=FALSE;	init(board[2][1]):=FALSE;	init(board[2][2]):=FALSE;	init(board[2][3]):=FALSE;	init(board[2][4]):=FALSE;	init(board[2][5]):=TRUE;	init(board[2][6]):=FALSE;	init(board[2][7]):=FALSE;	
+init(board[3][0]):=FALSE;	init(board[3][1]):=FALSE;	init(board[3][2]):=TRUE;	init(board[3][3]):=FALSE;	init(board[3][4]):=FALSE;	init(board[3][5]):=FALSE;	init(board[3][6]):=FALSE;	init(board[3][7]):=FALSE;	
+init(board[4][0]):=FALSE;	init(board[4][1]):=FALSE;	init(board[4][2]):=FALSE;	init(board[4][3]):=FALSE;	init(board[4][4]):=FALSE;	init(board[4][5]):=FALSE;	init(board[4][6]):=FALSE;	init(board[4][7]):=FALSE;	
+init(board[5][0]):=FALSE;	init(board[5][1]):=FALSE;	init(board[5][2]):=TRUE;	init(board[5][3]):=FALSE;	init(board[5][4]):=FALSE;	init(board[5][5]):=FALSE;	init(board[5][6]):=FALSE;	init(board[5][7]):=FALSE;	
+init(board[6][0]):=FALSE;	init(board[6][1]):=FALSE;	init(board[6][2]):=FALSE;	init(board[6][3]):=FALSE;	init(board[6][4]):=FALSE;	init(board[6][5]):=FALSE;	init(board[6][6]):=FALSE;	init(board[6][7]):=FALSE;	
+init(board[7][0]):=FALSE;	init(board[7][1]):=FALSE;	init(board[7][2]):=FALSE;	init(board[7][3]):=FALSE;	init(board[7][4]):=FALSE;	init(board[7][5]):=FALSE;	init(board[7][6]):=FALSE;	init(board[7][7]):=FALSE;	
+
+init(movement) := 0;
+
+init(worker_row) := 3; init(worker_col) := 4;
+
+next(worker_row):=
+case
+    movement = u & (up_step | up_push): worker_row - 1;
+    movement = d & (down_step | down_push): worker_row + 1;
+    TRUE: worker_row;
+esac;
+
+next(worker_col):=
+case
+    movement = r & (right_step | right_push): worker_col + 1;
+    movement = l & (left_step | left_push): worker_col - 1;
+    TRUE: worker_col;
+esac;
+    next(movement):={u, d ,l ,r};
+next(board[0][0]):= board[0][0];
+
+next(board[0][1]):= board[0][1];
+
+next(board[0][2]):= board[0][2];
+
+next(board[0][3]):= board[0][3];
+
+next(board[0][4]):= board[0][4];
+
+next(board[0][5]):= board[0][5];
+
+next(board[0][6]):= board[0][6];
+
+next(board[0][7]):= board[0][7];
+
+next(board[1][0]):= board[1][0];
+
+next(board[1][1]):= board[1][1];
+
+next(board[1][2]):= board[1][2];
+
+next(board[1][3]):= board[1][3];
+
+next(board[1][4]):=
+case
+	movement=l & left_push & worker_row=1 & worker_col=5 : FALSE;
+	movement=u & up_push & worker_row=3 & worker_col=4 : TRUE;
+	movement=u & up_push & worker_row=2 & worker_col=4 : FALSE;
+
+	TRUE: board[1][4];
+esac;
+
+next(board[1][5]):=
+case
+	movement=r & right_push & worker_row=1 & worker_col=4 : FALSE;
+	movement=u & up_push & worker_row=3 & worker_col=5 : TRUE;
+	movement=u & up_push & worker_row=2 & worker_col=5 : FALSE;
+
+	TRUE: board[1][5];
+esac;
+
+next(board[1][6]):= board[1][6];
+
+next(board[1][7]):= board[1][7];
+
+next(board[2][0]):= board[2][0];
+
+next(board[2][1]):= board[2][1];
+
+next(board[2][2]):=
+case
+	movement=l & left_push & worker_row=2 & worker_col=4 : TRUE;
+	movement=l & left_push & worker_row=2 & worker_col=3 : FALSE;
+	movement=u & up_push & worker_row=4 & worker_col=2 : TRUE;
+	movement=u & up_push & worker_row=3 & worker_col=2 : FALSE;
+
+	TRUE: board[2][2];
+esac;
+
+next(board[2][3]):=
+case
+	movement=r & right_push & worker_row=2 & worker_col=2 : FALSE;
+	movement=l & left_push & worker_row=2 & worker_col=5 : TRUE;
+	movement=l & left_push & worker_row=2 & worker_col=4 : FALSE;
+	movement=u & up_push & worker_row=4 & worker_col=3 : TRUE;
+	movement=u & up_push & worker_row=3 & worker_col=3 : FALSE;
+
+	TRUE: board[2][3];
+esac;
+
+next(board[2][4]):=
+case
+	movement=r & right_push & worker_row=2 & worker_col=2 : TRUE;
+	movement=r & right_push & worker_row=2 & worker_col=3 : FALSE;
+	movement=d & down_push & worker_row=1 & worker_col=4 : FALSE;
+	movement=l & left_push & worker_row=2 & worker_col=5 : FALSE;
+	movement=u & up_push & worker_row=4 & worker_col=4 : TRUE;
+	movement=u & up_push & worker_row=3 & worker_col=4 : FALSE;
+
+	TRUE: board[2][4];
+esac;
+
+next(board[2][5]):=
+case
+	movement=r & right_push & worker_row=2 & worker_col=3 : TRUE;
+	movement=r & right_push & worker_row=2 & worker_col=4 : FALSE;
+	movement=d & down_push & worker_row=1 & worker_col=5 : FALSE;
+	movement=u & up_push & worker_row=4 & worker_col=5 : TRUE;
+	movement=u & up_push & worker_row=3 & worker_col=5 : FALSE;
+
+	TRUE: board[2][5];
+esac;
+
+next(board[2][6]):= board[2][6];
+
+next(board[2][7]):= board[2][7];
+
+next(board[3][0]):= board[3][0];
+
+next(board[3][1]):=
+case
+	movement=l & left_push & worker_row=3 & worker_col=3 : TRUE;
+	movement=l & left_push & worker_row=3 & worker_col=2 : FALSE;
+	movement=u & up_push & worker_row=5 & worker_col=1 : TRUE;
+	movement=u & up_push & worker_row=4 & worker_col=1 : FALSE;
+
+	TRUE: board[3][1];
+esac;
+
+next(board[3][2]):=
+case
+	movement=r & right_push & worker_row=3 & worker_col=1 : FALSE;
+	movement=d & down_push & worker_row=2 & worker_col=2 : FALSE;
+	movement=l & left_push & worker_row=3 & worker_col=4 : TRUE;
+	movement=l & left_push & worker_row=3 & worker_col=3 : FALSE;
+	movement=u & up_push & worker_row=5 & worker_col=2 : TRUE;
+	movement=u & up_push & worker_row=4 & worker_col=2 : FALSE;
+
+	TRUE: board[3][2];
+esac;
+
+next(board[3][3]):=
+case
+	movement=r & right_push & worker_row=3 & worker_col=1 : TRUE;
+	movement=r & right_push & worker_row=3 & worker_col=2 : FALSE;
+	movement=d & down_push & worker_row=2 & worker_col=3 : FALSE;
+	movement=l & left_push & worker_row=3 & worker_col=5 : TRUE;
+	movement=l & left_push & worker_row=3 & worker_col=4 : FALSE;
+	movement=u & up_push & worker_row=5 & worker_col=3 : TRUE;
+	movement=u & up_push & worker_row=4 & worker_col=3 : FALSE;
+
+	TRUE: board[3][3];
+esac;
+
+next(board[3][4]):=
+case
+	movement=r & right_push & worker_row=3 & worker_col=2 : TRUE;
+	movement=r & right_push & worker_row=3 & worker_col=3 : FALSE;
+	movement=d & down_push & worker_row=1 & worker_col=4 : TRUE;
+	movement=d & down_push & worker_row=2 & worker_col=4 : FALSE;
+	movement=l & left_push & worker_row=3 & worker_col=5 : FALSE;
+	movement=u & up_push & worker_row=5 & worker_col=4 : TRUE;
+	movement=u & up_push & worker_row=4 & worker_col=4 : FALSE;
+
+	TRUE: board[3][4];
+esac;
+
+next(board[3][5]):=
+case
+	movement=r & right_push & worker_row=3 & worker_col=3 : TRUE;
+	movement=r & right_push & worker_row=3 & worker_col=4 : FALSE;
+	movement=d & down_push & worker_row=1 & worker_col=5 : TRUE;
+	movement=d & down_push & worker_row=2 & worker_col=5 : FALSE;
+	movement=u & up_push & worker_row=5 & worker_col=5 : TRUE;
+	movement=u & up_push & worker_row=4 & worker_col=5 : FALSE;
+
+	TRUE: board[3][5];
+esac;
+
+next(board[3][6]):= board[3][6];
+
+next(board[3][7]):= board[3][7];
+
+next(board[4][0]):= board[4][0];
+
+next(board[4][1]):=
+case
+	movement=d & down_push & worker_row=3 & worker_col=1 : FALSE;
+	movement=l & left_push & worker_row=4 & worker_col=3 : TRUE;
+	movement=l & left_push & worker_row=4 & worker_col=2 : FALSE;
+	movement=u & up_push & worker_row=5 & worker_col=1 : FALSE;
+
+	TRUE: board[4][1];
+esac;
+
+next(board[4][2]):=
+case
+	movement=r & right_push & worker_row=4 & worker_col=1 : FALSE;
+	movement=d & down_push & worker_row=2 & worker_col=2 : TRUE;
+	movement=d & down_push & worker_row=3 & worker_col=2 : FALSE;
+	movement=l & left_push & worker_row=4 & worker_col=4 : TRUE;
+	movement=l & left_push & worker_row=4 & worker_col=3 : FALSE;
+	movement=u & up_push & worker_row=5 & worker_col=2 : FALSE;
+
+	TRUE: board[4][2];
+esac;
+
+next(board[4][3]):=
+case
+	movement=r & right_push & worker_row=4 & worker_col=1 : TRUE;
+	movement=r & right_push & worker_row=4 & worker_col=2 : FALSE;
+	movement=d & down_push & worker_row=2 & worker_col=3 : TRUE;
+	movement=d & down_push & worker_row=3 & worker_col=3 : FALSE;
+	movement=l & left_push & worker_row=4 & worker_col=5 : TRUE;
+	movement=l & left_push & worker_row=4 & worker_col=4 : FALSE;
+	movement=u & up_push & worker_row=6 & worker_col=3 : TRUE;
+	movement=u & up_push & worker_row=5 & worker_col=3 : FALSE;
+
+	TRUE: board[4][3];
+esac;
+
+next(board[4][4]):=
+case
+	movement=r & right_push & worker_row=4 & worker_col=2 : TRUE;
+	movement=r & right_push & worker_row=4 & worker_col=3 : FALSE;
+	movement=d & down_push & worker_row=2 & worker_col=4 : TRUE;
+	movement=d & down_push & worker_row=3 & worker_col=4 : FALSE;
+	movement=l & left_push & worker_row=4 & worker_col=6 : TRUE;
+	movement=l & left_push & worker_row=4 & worker_col=5 : FALSE;
+	movement=u & up_push & worker_row=6 & worker_col=4 : TRUE;
+	movement=u & up_push & worker_row=5 & worker_col=4 : FALSE;
+
+	TRUE: board[4][4];
+esac;
+
+next(board[4][5]):=
+case
+	movement=r & right_push & worker_row=4 & worker_col=3 : TRUE;
+	movement=r & right_push & worker_row=4 & worker_col=4 : FALSE;
+	movement=d & down_push & worker_row=2 & worker_col=5 : TRUE;
+	movement=d & down_push & worker_row=3 & worker_col=5 : FALSE;
+	movement=l & left_push & worker_row=4 & worker_col=6 : FALSE;
+	movement=u & up_push & worker_row=5 & worker_col=5 : FALSE;
+
+	TRUE: board[4][5];
+esac;
+
+next(board[4][6]):=
+case
+	movement=r & right_push & worker_row=4 & worker_col=4 : TRUE;
+	movement=r & right_push & worker_row=4 & worker_col=5 : FALSE;
+	movement=u & up_push & worker_row=5 & worker_col=6 : FALSE;
+
+	TRUE: board[4][6];
+esac;
+
+next(board[4][7]):= board[4][7];
+
+next(board[5][0]):= board[5][0];
+
+next(board[5][1]):=
+case
+	movement=d & down_push & worker_row=3 & worker_col=1 : TRUE;
+	movement=d & down_push & worker_row=4 & worker_col=1 : FALSE;
+	movement=l & left_push & worker_row=5 & worker_col=3 : TRUE;
+	movement=l & left_push & worker_row=5 & worker_col=2 : FALSE;
+
+	TRUE: board[5][1];
+esac;
+
+next(board[5][2]):=
+case
+	movement=r & right_push & worker_row=5 & worker_col=1 : FALSE;
+	movement=d & down_push & worker_row=3 & worker_col=2 : TRUE;
+	movement=d & down_push & worker_row=4 & worker_col=2 : FALSE;
+	movement=l & left_push & worker_row=5 & worker_col=4 : TRUE;
+	movement=l & left_push & worker_row=5 & worker_col=3 : FALSE;
+
+	TRUE: board[5][2];
+esac;
+
+next(board[5][3]):=
+case
+	movement=r & right_push & worker_row=5 & worker_col=1 : TRUE;
+	movement=r & right_push & worker_row=5 & worker_col=2 : FALSE;
+	movement=d & down_push & worker_row=3 & worker_col=3 : TRUE;
+	movement=d & down_push & worker_row=4 & worker_col=3 : FALSE;
+	movement=l & left_push & worker_row=5 & worker_col=5 : TRUE;
+	movement=l & left_push & worker_row=5 & worker_col=4 : FALSE;
+	movement=u & up_push & worker_row=6 & worker_col=3 : FALSE;
+
+	TRUE: board[5][3];
+esac;
+
+next(board[5][4]):=
+case
+	movement=r & right_push & worker_row=5 & worker_col=2 : TRUE;
+	movement=r & right_push & worker_row=5 & worker_col=3 : FALSE;
+	movement=d & down_push & worker_row=3 & worker_col=4 : TRUE;
+	movement=d & down_push & worker_row=4 & worker_col=4 : FALSE;
+	movement=l & left_push & worker_row=5 & worker_col=6 : TRUE;
+	movement=l & left_push & worker_row=5 & worker_col=5 : FALSE;
+	movement=u & up_push & worker_row=6 & worker_col=4 : FALSE;
+
+	TRUE: board[5][4];
+esac;
+
+next(board[5][5]):=
+case
+	movement=r & right_push & worker_row=5 & worker_col=3 : TRUE;
+	movement=r & right_push & worker_row=5 & worker_col=4 : FALSE;
+	movement=d & down_push & worker_row=3 & worker_col=5 : TRUE;
+	movement=d & down_push & worker_row=4 & worker_col=5 : FALSE;
+	movement=l & left_push & worker_row=5 & worker_col=6 : FALSE;
+
+	TRUE: board[5][5];
+esac;
+
+next(board[5][6]):=
+case
+	movement=r & right_push & worker_row=5 & worker_col=4 : TRUE;
+	movement=r & right_push & worker_row=5 & worker_col=5 : FALSE;
+	movement=d & down_push & worker_row=4 & worker_col=6 : FALSE;
+
+	TRUE: board[5][6];
+esac;
+
+next(board[5][7]):= board[5][7];
+
+next(board[6][0]):= board[6][0];
+
+next(board[6][1]):= board[6][1];
+
+next(board[6][2]):= board[6][2];
+
+next(board[6][3]):=
+case
+	movement=d & down_push & worker_row=4 & worker_col=3 : TRUE;
+	movement=d & down_push & worker_row=5 & worker_col=3 : FALSE;
+	movement=l & left_push & worker_row=6 & worker_col=4 : FALSE;
+
+	TRUE: board[6][3];
+esac;
+
+next(board[6][4]):=
+case
+	movement=r & right_push & worker_row=6 & worker_col=3 : FALSE;
+	movement=d & down_push & worker_row=4 & worker_col=4 : TRUE;
+	movement=d & down_push & worker_row=5 & worker_col=4 : FALSE;
+
+	TRUE: board[6][4];
+esac;
+
+next(board[6][5]):= board[6][5];
+
+next(board[6][6]):= board[6][6];
+
+next(board[6][7]):= board[6][7];
+
+next(board[7][0]):= board[7][0];
+
+next(board[7][1]):= board[7][1];
+
+next(board[7][2]):= board[7][2];
+
+next(board[7][3]):= board[7][3];
+
+next(board[7][4]):= board[7][4];
+
+next(board[7][5]):= board[7][5];
+
+next(board[7][6]):= board[7][6];
+
+next(board[7][7]):= board[7][7];
+
+    
+DEFINE
+    down_step := worker_row<7 & !walls[worker_row+1][worker_col] & !board[worker_row+1][worker_col];
+    down_push := worker_row<6 & board[worker_row+1][worker_col] & !walls[worker_row+2][worker_col] & !board[worker_row+2][worker_col];
+
+    right_step := worker_col<7 & !walls[worker_row][worker_col+1] & !board[worker_row][worker_col+1];
+    right_push := worker_col<6 & board[worker_row][worker_col+1] & !walls[worker_row][worker_col+2] & !board[worker_row][worker_col+2];
+
+    left_step := worker_col>0 & !walls[worker_row][worker_col - 1] & !board[worker_row][worker_col - 1];
+    left_push := worker_col>1 & board[worker_row][worker_col - 1] & !walls[worker_row][worker_col - 2] & !board[worker_row][worker_col - 2];
+
+    up_step := worker_row>0 & !walls[worker_row - 1][worker_col] & !board[worker_row - 1][worker_col];
+    up_push := worker_row>1 & board[worker_row - 1][worker_col] & !walls[worker_row - 2][worker_col] & !board[worker_row - 2][worker_col];
+
+walls := [
+[ TRUE,  TRUE,  TRUE,  TRUE,  TRUE,  TRUE,  TRUE,  TRUE],
+[ TRUE,  TRUE,  TRUE,  TRUE, FALSE, FALSE,  TRUE,  TRUE],
+[ TRUE,  TRUE, FALSE, FALSE, FALSE, FALSE,  TRUE,  TRUE],
+[ TRUE, FALSE, FALSE, FALSE, FALSE, FALSE,  TRUE,  TRUE],
+[ TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,  TRUE],
+[ TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,  TRUE],
+[ TRUE,  TRUE,  TRUE, FALSE, FALSE,  TRUE,  TRUE,  TRUE],
+[ TRUE,  TRUE,  TRUE,  TRUE,  TRUE,  TRUE,  TRUE,  TRUE]];
+JUSTICE
+	!board[0][0] & !board[0][1] & !board[0][2] & !board[0][3] & !board[0][4] & !board[0][5] & !board[0][6] & !board[0][7] & !board[1][0] & !board[1][1] & !board[1][2] & !board[1][3] & !board[1][4] & !board[1][5] & !board[1][6] & !board[1][7] & !board[2][0] & !board[2][1] & !board[2][2] & !board[2][6] & !board[2][7] & !board[3][0] & !board[3][1] & !board[3][6] & !board[3][7] & !board[4][0] & !board[4][6] & !board[4][7] & !board[5][0] & !board[5][1] & !board[5][6] & !board[5][7] & !board[6][0] & !board[6][1] & !board[6][2] & !board[6][3] & !board[6][4] & !board[6][5] & !board[6][6] & !board[6][7] & !board[7][0] & !board[7][1] & !board[7][2] & !board[7][3] & !board[7][4] & !board[7][5] & !board[7][6] & !board[7][7];
+DEFINE
+	reach:= board[3][3] & board[4][4] & board[5][4];
+	LTLSPEC G(!reach)

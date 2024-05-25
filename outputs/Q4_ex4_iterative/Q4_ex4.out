@@ -1,0 +1,413 @@
+*** This is nuXmv 2.0.0 (compiled on Mon Oct 14 18:05:39 2019)
+*** Copyright (c) 2014-2019, Fondazione Bruno Kessler
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@list.fbk.eu>.
+*** Please report bugs at https://nuxmv.fbk.eu/bugs
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@list.fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.6.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@list.fbk.eu>.
+*** Copyright (C) 2010-2019, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2019 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2019 by University of Trento and others
+*** See http://mathsat.fbk.eu
+
+-- specification  G !reach  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    worker_row = 7
+    worker_col = 8
+    movement = 0
+    board[0][0] = FALSE
+    board[0][1] = FALSE
+    board[0][2] = FALSE
+    board[0][3] = FALSE
+    board[0][4] = FALSE
+    board[0][5] = FALSE
+    board[0][6] = FALSE
+    board[0][7] = FALSE
+    board[0][8] = FALSE
+    board[0][9] = FALSE
+    board[0][10] = FALSE
+    board[0][11] = FALSE
+    board[1][0] = FALSE
+    board[1][1] = FALSE
+    board[1][2] = FALSE
+    board[1][3] = FALSE
+    board[1][4] = FALSE
+    board[1][5] = FALSE
+    board[1][6] = FALSE
+    board[1][7] = FALSE
+    board[1][8] = FALSE
+    board[1][9] = FALSE
+    board[1][10] = FALSE
+    board[1][11] = FALSE
+    board[2][0] = FALSE
+    board[2][1] = FALSE
+    board[2][2] = TRUE
+    board[2][3] = FALSE
+    board[2][4] = FALSE
+    board[2][5] = FALSE
+    board[2][6] = FALSE
+    board[2][7] = FALSE
+    board[2][8] = FALSE
+    board[2][9] = FALSE
+    board[2][10] = FALSE
+    board[2][11] = FALSE
+    board[3][0] = FALSE
+    board[3][1] = FALSE
+    board[3][2] = FALSE
+    board[3][3] = FALSE
+    board[3][4] = FALSE
+    board[3][5] = FALSE
+    board[3][6] = FALSE
+    board[3][7] = FALSE
+    board[3][8] = FALSE
+    board[3][9] = FALSE
+    board[3][10] = FALSE
+    board[3][11] = FALSE
+    board[4][0] = FALSE
+    board[4][1] = FALSE
+    board[4][2] = FALSE
+    board[4][3] = FALSE
+    board[4][4] = FALSE
+    board[4][5] = FALSE
+    board[4][6] = FALSE
+    board[4][7] = FALSE
+    board[4][8] = FALSE
+    board[4][9] = FALSE
+    board[4][10] = FALSE
+    board[4][11] = FALSE
+    board[5][0] = FALSE
+    board[5][1] = FALSE
+    board[5][2] = FALSE
+    board[5][3] = FALSE
+    board[5][4] = FALSE
+    board[5][5] = FALSE
+    board[5][6] = FALSE
+    board[5][7] = FALSE
+    board[5][8] = FALSE
+    board[5][9] = FALSE
+    board[5][10] = FALSE
+    board[5][11] = FALSE
+    board[6][0] = FALSE
+    board[6][1] = FALSE
+    board[6][2] = FALSE
+    board[6][3] = FALSE
+    board[6][4] = FALSE
+    board[6][5] = FALSE
+    board[6][6] = FALSE
+    board[6][7] = FALSE
+    board[6][8] = FALSE
+    board[6][9] = FALSE
+    board[6][10] = FALSE
+    board[6][11] = FALSE
+    board[7][0] = FALSE
+    board[7][1] = FALSE
+    board[7][2] = FALSE
+    board[7][3] = FALSE
+    board[7][4] = FALSE
+    board[7][5] = FALSE
+    board[7][6] = FALSE
+    board[7][7] = FALSE
+    board[7][8] = FALSE
+    board[7][9] = FALSE
+    board[7][10] = FALSE
+    board[7][11] = FALSE
+    board[8][0] = FALSE
+    board[8][1] = FALSE
+    board[8][2] = FALSE
+    board[8][3] = FALSE
+    board[8][4] = FALSE
+    board[8][5] = FALSE
+    board[8][6] = FALSE
+    board[8][7] = FALSE
+    board[8][8] = FALSE
+    board[8][9] = FALSE
+    board[8][10] = FALSE
+    board[8][11] = FALSE
+    board[9][0] = FALSE
+    board[9][1] = FALSE
+    board[9][2] = FALSE
+    board[9][3] = FALSE
+    board[9][4] = FALSE
+    board[9][5] = FALSE
+    board[9][6] = FALSE
+    board[9][7] = FALSE
+    board[9][8] = FALSE
+    board[9][9] = FALSE
+    board[9][10] = FALSE
+    board[9][11] = FALSE
+    board[10][0] = FALSE
+    board[10][1] = FALSE
+    board[10][2] = FALSE
+    board[10][3] = FALSE
+    board[10][4] = FALSE
+    board[10][5] = FALSE
+    board[10][6] = FALSE
+    board[10][7] = FALSE
+    board[10][8] = FALSE
+    board[10][9] = FALSE
+    board[10][10] = FALSE
+    board[10][11] = FALSE
+    columns = 12
+    rows = 11
+    walls[0][0] = TRUE
+    walls[0][1] = TRUE
+    walls[0][2] = TRUE
+    walls[0][3] = TRUE
+    walls[0][4] = TRUE
+    walls[0][5] = TRUE
+    walls[0][6] = TRUE
+    walls[0][7] = TRUE
+    walls[0][8] = TRUE
+    walls[0][9] = TRUE
+    walls[0][10] = TRUE
+    walls[0][11] = TRUE
+    walls[1][0] = TRUE
+    walls[1][1] = TRUE
+    walls[1][2] = TRUE
+    walls[1][3] = TRUE
+    walls[1][4] = FALSE
+    walls[1][5] = FALSE
+    walls[1][6] = FALSE
+    walls[1][7] = FALSE
+    walls[1][8] = FALSE
+    walls[1][9] = TRUE
+    walls[1][10] = FALSE
+    walls[1][11] = TRUE
+    walls[2][0] = TRUE
+    walls[2][1] = FALSE
+    walls[2][2] = FALSE
+    walls[2][3] = FALSE
+    walls[2][4] = FALSE
+    walls[2][5] = FALSE
+    walls[2][6] = FALSE
+    walls[2][7] = FALSE
+    walls[2][8] = FALSE
+    walls[2][9] = FALSE
+    walls[2][10] = FALSE
+    walls[2][11] = TRUE
+    walls[3][0] = TRUE
+    walls[3][1] = FALSE
+    walls[3][2] = FALSE
+    walls[3][3] = FALSE
+    walls[3][4] = FALSE
+    walls[3][5] = FALSE
+    walls[3][6] = FALSE
+    walls[3][7] = FALSE
+    walls[3][8] = TRUE
+    walls[3][9] = TRUE
+    walls[3][10] = FALSE
+    walls[3][11] = TRUE
+    walls[4][0] = TRUE
+    walls[4][1] = TRUE
+    walls[4][2] = FALSE
+    walls[4][3] = FALSE
+    walls[4][4] = FALSE
+    walls[4][5] = FALSE
+    walls[4][6] = TRUE
+    walls[4][7] = FALSE
+    walls[4][8] = TRUE
+    walls[4][9] = TRUE
+    walls[4][10] = TRUE
+    walls[4][11] = TRUE
+    walls[5][0] = TRUE
+    walls[5][1] = TRUE
+    walls[5][2] = TRUE
+    walls[5][3] = TRUE
+    walls[5][4] = FALSE
+    walls[5][5] = FALSE
+    walls[5][6] = FALSE
+    walls[5][7] = FALSE
+    walls[5][8] = FALSE
+    walls[5][9] = TRUE
+    walls[5][10] = TRUE
+    walls[5][11] = TRUE
+    walls[6][0] = TRUE
+    walls[6][1] = FALSE
+    walls[6][2] = FALSE
+    walls[6][3] = FALSE
+    walls[6][4] = FALSE
+    walls[6][5] = FALSE
+    walls[6][6] = FALSE
+    walls[6][7] = FALSE
+    walls[6][8] = FALSE
+    walls[6][9] = TRUE
+    walls[6][10] = TRUE
+    walls[6][11] = TRUE
+    walls[7][0] = TRUE
+    walls[7][1] = FALSE
+    walls[7][2] = TRUE
+    walls[7][3] = FALSE
+    walls[7][4] = FALSE
+    walls[7][5] = FALSE
+    walls[7][6] = FALSE
+    walls[7][7] = TRUE
+    walls[7][8] = FALSE
+    walls[7][9] = FALSE
+    walls[7][10] = TRUE
+    walls[7][11] = TRUE
+    walls[8][0] = TRUE
+    walls[8][1] = FALSE
+    walls[8][2] = TRUE
+    walls[8][3] = TRUE
+    walls[8][4] = FALSE
+    walls[8][5] = FALSE
+    walls[8][6] = FALSE
+    walls[8][7] = FALSE
+    walls[8][8] = TRUE
+    walls[8][9] = TRUE
+    walls[8][10] = TRUE
+    walls[8][11] = TRUE
+    walls[9][0] = TRUE
+    walls[9][1] = TRUE
+    walls[9][2] = FALSE
+    walls[9][3] = FALSE
+    walls[9][4] = FALSE
+    walls[9][5] = FALSE
+    walls[9][6] = TRUE
+    walls[9][7] = TRUE
+    walls[9][8] = FALSE
+    walls[9][9] = FALSE
+    walls[9][10] = FALSE
+    walls[9][11] = TRUE
+    walls[10][0] = TRUE
+    walls[10][1] = TRUE
+    walls[10][2] = TRUE
+    walls[10][3] = TRUE
+    walls[10][4] = TRUE
+    walls[10][5] = TRUE
+    walls[10][6] = TRUE
+    walls[10][7] = TRUE
+    walls[10][8] = TRUE
+    walls[10][9] = TRUE
+    walls[10][10] = TRUE
+    walls[10][11] = TRUE
+    up_push = FALSE
+    up_step = TRUE
+    left_push = FALSE
+    left_step = FALSE
+    right_push = FALSE
+    right_step = TRUE
+    down_push = FALSE
+    down_step = FALSE
+    reach = FALSE
+  -> State: 1.2 <-
+    movement = u
+  -> State: 1.3 <-
+    worker_row = 6
+    left_step = TRUE
+    right_step = FALSE
+    down_step = TRUE
+  -> State: 1.4 <-
+    worker_row = 5
+    movement = l
+    up_step = FALSE
+  -> State: 1.5 <-
+    worker_col = 7
+    movement = u
+    up_step = TRUE
+    right_step = TRUE
+  -> State: 1.6 <-
+    worker_row = 4
+    left_step = FALSE
+    right_step = FALSE
+  -> State: 1.7 <-
+    worker_row = 3
+    movement = l
+    left_step = TRUE
+  -> State: 1.8 <-
+    worker_col = 6
+    right_step = TRUE
+    down_step = FALSE
+  -> State: 1.9 <-
+    worker_col = 5
+    down_step = TRUE
+  -> State: 1.10 <-
+    worker_col = 4
+  -> State: 1.11 <-
+    worker_col = 3
+  -> State: 1.12 <-
+    worker_col = 2
+    up_step = FALSE
+  -> State: 1.13 <-
+    worker_col = 1
+    movement = u
+    up_step = TRUE
+    left_step = FALSE
+    down_step = FALSE
+  -> State: 1.14 <-
+    worker_row = 2
+    movement = r
+    up_step = FALSE
+    right_push = TRUE
+    right_step = FALSE
+    down_step = TRUE
+  -> State: 1.15 <-
+    worker_col = 2
+    board[2][2] = FALSE
+    board[2][3] = TRUE
+    left_step = TRUE
+  -> State: 1.16 <-
+    worker_col = 3
+    board[2][3] = FALSE
+    board[2][4] = TRUE
+  -> State: 1.17 <-
+    worker_col = 4
+    movement = u
+    board[2][4] = FALSE
+    board[2][5] = TRUE
+    up_step = TRUE
+  -> State: 1.18 <-
+    worker_row = 1
+    movement = r
+    up_step = FALSE
+    left_step = FALSE
+    right_push = FALSE
+    right_step = TRUE
+  -> State: 1.19 <-
+    worker_col = 5
+    movement = d
+    left_step = TRUE
+    down_push = TRUE
+    down_step = FALSE
+  -> State: 1.20 <-
+    worker_row = 2
+    movement = r
+    board[2][5] = FALSE
+    board[3][5] = TRUE
+    up_step = TRUE
+    reach = TRUE
+  -- Loop starts here
+  -> State: 1.21 <-
+    worker_col = 6
+    movement = d
+    down_push = FALSE
+    down_step = TRUE
+  -> State: 1.22 <-
+    worker_row = 3
+    movement = u
+    left_push = TRUE
+    left_step = FALSE
+    down_step = FALSE
+  -> State: 1.23 <-
+    worker_row = 2
+    movement = d
+    left_push = FALSE
+    left_step = TRUE
+    down_step = TRUE
